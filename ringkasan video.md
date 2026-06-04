@@ -1,83 +1,90 @@
-video #1
-*tidak disertakan karena saya sudah lihat videonya langsung
-
-video #2
-Berikut adalah panduan langkah demi langkah secara mendalam mengenai alur kerja Extract, Transform, Load (ETL) menggunakan Pentaho Data Integration (Spoon) berdasarkan tutorial tersebut:
-
-1. Tahap Persiapan dan Ekstraksi (0:02 - 5:14)
-Memulai Proyek: Anda harus membuka aplikasi Spoon dan membuat file baru dengan memilih File > New > Transformation (0:46). Lembar kerja kosong akan muncul sebagai wadah proses ETL Anda.
-Menambahkan Input: Cari komponen CSV File Input di panel Design atau gunakan fitur search (1:20), lalu tarik (drag-and-drop) ke canvas (1:30).
-Konfigurasi Sumber Data:
-Dobel klik pada icon komponen untuk membuka jendela pengaturan (1:42).
-Gunakan tombol Browse untuk memilih file CSV mahasiswa yang akan diolah (3:00).
-Pastikan delimiter disesuaikan dengan isi file (standarnya adalah koma). Anda dapat mengubah nama langkah (misal: csv mahasiswa) agar lebih mudah diidentifikasi (1:55).
-Mapping Field: Klik tombol Get Fields (3:39). Sistem akan secara otomatis membaca nama kolom, type data (Integer, String, Big Number), dan panjang karakter dari file CSV tersebut. Lakukan Preview (4:48) untuk memastikan data telah terbaca dengan benar sebelum melanjutkan.
-2. Tahap Load (Ekstraksi ke Excel) (5:17 - 9:15)
-Menghubungkan Komponen (Hops): Tarik garis penghubung dari CSV File Input ke komponen tujuan. Caranya: tekan tombol Shift dan tarik garis dari komponen asal ke komponen tujuan (6:21).
-Konfigurasi Output: Pilih komponen Microsoft Excel Writer dari panel Output. Dobel klik untuk mengatur lokasi penyimpanan file output dan menentukan ekstensi file, seperti .xlsx atau .xls (6:46).
-Eksekusi: Klik tombol Run pada bar toolbar (7:36). Anda akan diminta menyimpan file transformation (.ktr) terlebih dahulu. Jika konfigurasi benar, semua ikon akan ditandai dengan centang hijau, menandakan proses berhasil (8:05).
-3. Tahap Transformasi (Select Values) (9:15 - 13:21)
-Menyisipkan Transformasi: Untuk mengubah data sebelum dimuat, Anda bisa menghapus hop lama dan menyisipkan komponen Select Values yang berada di bawah kategori Transform (10:06).
-Filtering Kolom:
-Dobel klik pada Select Values, lalu buka tab Remove (11:05).
-Masukkan nama kolom yang tidak diinginkan (seperti: tahun masuk, semester, status) agar dihapus dari dataset final (11:22).
-Finalisasi: Hubungkan kembali dari Select Values ke Microsoft Excel Writer. Jalankan kembali (Run) proses tersebut. Hasil akhir file Excel Anda kini hanya akan berisi kolom yang dipilih, yaitu NIM, Nama, Jurusan, dan IPK (12:43).
-Catatan Tambahan (13:21 - 14:30)
-Teknik ini adalah fondasi dari seluruh proses integrasi data. Pemateri menegaskan bahwa alur yang sama (Input -> Transform -> Output) berlaku untuk berbagai sumber data lainnya, seperti koneksi Database atau Microsoft Excel Input, yang dapat ditemukan di panel toolbox aplikasi Spoon.
-
-video #3
-Berikut adalah rincian tahapan teknis penggunaan komponen **Data Grid** pada *Pentaho Data Integration* (PDI) sebagaimana dijelaskan dalam video:
-
-### 1. Pendahuluan Mengenai Data Grid (0:02 - 2:03)
-*   **Tujuan:** *Data Grid* digunakan untuk membuat *dummy data* (data statis) secara manual. Ini sangat membantu untuk keperluan latihan transformasi data tanpa harus memproses file eksternal seperti CSV atau koneksi database secara langsung.
-*   **Fungsi Utama:** Memungkinkan pengguna untuk berfokus pada logika transformasi, seperti *select columns*, *sorting*, *agregasi*, atau penanganan data kosong.
-
-### 2. Konfigurasi Data Grid (2:19 - 4:17)
-*   **Langkah awal:** Buka *transformation* baru dan tarik komponen *Data Grid* ke dalam *canvas*.
-*   **Definisi Metadata (Fields):** Klik dua kali pada *Data Grid* untuk mendefinisikan struktur kolom:
-    *   **Name (NIM):** Tipe data *Integer*.
-    *   **Nama:** Tipe data *String*.
-    *   **Alamat:** Tipe data *String*.
-    *   **Nomor HP:** Tipe data *Integer*.
-*   **Input Data:** Masukkan data statis secara manual sesuai kolom yang telah dibuat (contoh: 1112/Rian/Bandung, 1113/Dani/Bandung, dst).
-*   **Validasi:** Anda bisa menekan tombol *preview* untuk memastikan data yang diinput sudah sesuai sebelum melanjutkan ke tahap berikutnya (4:10).
-
-### 3. Transformasi dengan Select Values (4:21 - 5:25)
-*   Gunakan komponen **Select Values** untuk memodifikasi *stream* data:
-    *   **Menghapus Kolom (*Remove*):** Dalam video, kolom *Nomor HP* dipilih untuk dihapus agar tidak muncul di output akhir (4:44).
-    *   **Mengubah Nama Kolom (*Rename to*):** Mengubah label kolom *Nama* menjadi *Nama Lengkap* agar lebih informatif (4:54).
-
-### 4. Output Data (5:29 - 7:51)
-*   **Destinasi Output:** Data yang telah ditransformasi dapat disimpan ke berbagai format. Dalam video, digunakan **Microsoft Excel Writer** (5:36).
-*   **Proses Jalankan (Run):**
-    *   Simpan *transformation* dengan nama (contoh: *materi_kedua_data_grid.ktr*).
-    *   Tekan tombol *Run*.
-    *   Perhatikan indikator status (ikon centang hijau) yang menandakan proses berhasil tanpa *error* (7:03).
-*   **Verifikasi Hasil:** Buka file Excel yang dihasilkan di folder yang telah ditentukan untuk memastikan bahwa *Nomor HP* telah hilang dan kolom *Nama* sudah berubah menjadi *Nama Lengkap* (7:31).
-
 video #5
-Berikut adalah rincian tahapan dan langkah teknis penggunaan fitur **Filter Rows** pada *Pentaho Data Integration* (PDI) berdasarkan tutorial tersebut:
+Video ini merupakan tutorial mengenai penggunaan fitur **Replace in String** pada *Pentaho Data Integration* (PDI). Berikut adalah rangkuman langkah-langkah yang dilakukan dalam video:
 
-### 1. Persiapan Data (1:09 - 2:15)
-*   **Input File:** Menggunakan komponen *CSV File Input* untuk memanggil sumber data, dalam contoh ini adalah file `data mahasiswa.csv`.
-*   **Konfigurasi Input:** Melakukan *Get Fields* agar PDI dapat membaca struktur kolom dari file CSV tersebut.
-*   **Validasi Awal:** Melakukan pengecekan data melalui fitur *Preview* untuk memastikan data telah terbaca dengan benar oleh sistem.
+### 1. Pendahuluan dan Kasus (0:02 - 3:13)
+*   Penjelasan fungsi **Replace in String**: Mengganti nilai teks atau karakter tertentu dalam kolom data agar seragam (misalnya, menyamakan singkatan 'SI' menjadi 'Sistem Informasi').
+*   Tujuan: Menyeragamkan data mahasiswa yang memiliki variasi penulisan untuk mempermudah proses agregasi data di kemudian hari.
 
-### 2. Implementasi Filter Rows (2:22 - 3:13)
-*   **Menambahkan Komponen:** Menarik langkah *Filter Rows* ke dalam lembar kerja transformasi (*transformation*).
-*   **Menghubungkan Jalur (*Hops*):** Menghubungkan *CSV File Input* dengan *Filter Rows*.
-*   **Konfigurasi Kondisi:** 
-    *   Masuk ke pengaturan *Filter Rows* untuk mendefinisikan logika filter.
-    *   Memilih kolom yang akan difilter (misalnya: *IPK*).
-    *   Memilih operator perbandingan (misalnya: *Greater than* / lebih besar).
-    *   Menentukan nilai referensi (misalnya: *3.5*).
+### 2. Implementasi di Pentaho (3:13 - 6:00)
+*   Membuat *transformation* baru dan memasukkan *step* **Replace in String** ke dalam *workspace*.
+*   Menghubungkan *input* data mahasiswa ke *step* tersebut.
+*   Mengonfigurasi *rule* pencarian: Mencari teks **'si'** dan menggantinya dengan **'sistem informasi'** pada kolom 'jurusan'.
+*   Menyiapkan *output* data ke dalam format file *Excel* (XLSX).
 
-### 3. Pengaturan Output (4:37 - 8:03)
-*   **Jalur Output True:** Menambahkan langkah *Excel Output* (atau komponen output lainnya) untuk menampung data yang memenuhi kriteria (IPK > 3.5). Hubungkan dari *Filter Rows* ke komponen output dan pilih opsi *Send 'true' data to this step*.
-*   **Jalur Output False:** Menambahkan langkah *Excel Output* kedua untuk menampung data yang tidak memenuhi kriteria (IPK <= 3.5). Hubungkan dari *Filter Rows* ke komponen ini dan pilih opsi *Send 'false' data to this step*.
-*   **Konfigurasi File Output:** Memberikan nama dan lokasi penyimpanan untuk masing-masing file hasil filter, misalnya `output_true.xls` dan `output_false.xls`.
+### 3. Pengujian dan Perbaikan (6:00 - 10:24)
+*   **Percobaan pertama (6:00 - 7:27):** Menjalankan *transformation*. Hasilnya ditemukan masalah, yaitu teks yang mengandung 'si' di dalam kata lain (seperti pada kata 'sistem informasi' itu sendiri) ikut berubah, sehingga data menjadi tidak akurat.
+*   **Solusi:** Menambahkan pengaturan **Whole word = Yes** di dalam konfigurasi *Replace in String*. Hal ini memastikan hanya kata 'si' yang berdiri sendiri (utuh) yang akan diganti, bukan bagian dari kata lain (7:31 - 8:54).
+*   **Pengujian Akhir:** Menjalankan ulang proses dan memverifikasi hasilnya. Data mahasiswa dengan jurusan 'si' berhasil berubah menjadi 'sistem informasi' tanpa merusak data lain (9:17 - 10:13).
 
-### 4. Eksekusi dan Verifikasi (8:09 - 10:20)
-*   **Menjalankan Transformasi:** Klik tombol *Run* pada toolbar untuk mengeksekusi rangkaian proses tersebut.
-*   **Verifikasi Visual:** Setelah proses selesai (ditandai dengan centang hijau pada setiap komponen), lakukan *Preview* pada masing-masing *output* untuk memastikan data telah terbagi secara akurat sesuai kondisi yang telah ditentukan.
-*   **Pengecekan File:** Membuka file hasil ekspor (*Excel*) untuk memastikan struktur data sudah sesuai dengan proses *filtering* yang dilakukan.
+video #6
+
+Video ini membahas implementasi **Merge Join** dalam *Pentaho Data Integration* untuk menggabungkan dua dataset yang berbeda. Berikut adalah langkah-langkah lengkap yang dilakukan dalam video:
+
+**1. Persiapan Data (0:01 - 5:00)**
+*   **Studi Kasus:** Menggunakan dua file (CSV/Excel), yaitu data **Dosen** dan data **Program Studi (Prodi)**.
+*   **Relasi Data:** Menjelaskan konsep *Foreign Key*, di mana kolom 'jurusan' pada data dosen akan dihubungkan dengan 'kode prodi' pada data Master Prodi.
+
+**2. Konfigurasi Awal di Pentaho (3:24 - 6:20)**
+*   Membuat *transformation* baru dan memasukkan file input untuk data Dosen dan data Prodi menggunakan *CSV file input*.
+*   Melakukan pengecekan data (*Get Fields* dan *Preview*) untuk memastikan struktur tabel sudah benar.
+
+**3. Implementasi Merge Join (6:21 - 10:20)**
+*   Menggunakan *step* **Merge Join** untuk menghubungkan kedua file tersebut berdasarkan atribut yang sama (jurusan).
+*   Memilih tipe join yang diinginkan (Inner, Left, Right, atau Full).
+*   Menyimpan hasil *join* ke dalam format file Excel menggunakan *Microsoft Excel Writer*.
+
+**4. Pentingnya Sorting (11:00 - 14:10)**
+*   Penjelasan bahwa *Merge Join* di Pentaho memerlukan data yang sudah diurutkan terlebih dahulu agar hasilnya akurat.
+*   Menambahkan *step* **Sort Rows** sebelum *Merge Join* pada kedua aliran data (Dosen dan Prodi) untuk mengurutkan berdasarkan kolom kunci (*jurusan/kode prodi*) secara *ascending*.
+
+**5. Pembersihan Data dengan Select Values (14:45 - 16:50)**
+*   Menggunakan *step* **Select Values** untuk memfilter kolom yang akan ditampilkan.
+*   Menghapus kolom duplikat (seperti 'jurusan' dan 'kode prodi' yang ganda) serta kolom lain yang tidak diperlukan agar *output* lebih rapi.
+
+**6. Pengujian Akhir (16:30 - 17:32)**
+*   Menjalankan transformasi (*Run*) dan memverifikasi hasil akhir di mana data dosen kini sudah dilengkapi dengan nama program studi yang sesuai.
+
+video #7
+Video ini membahas cara menangani data yang bernilai `null` atau kosong menggunakan **Pentaho Data Integration (PDI)** dengan memanfaatkan *step* **If field value is null**. Berikut adalah langkah-langkah yang dilakukan dalam video:
+
+**1. Persiapan Data (0:02 - 2:35)**
+* Penjelasan awal mengenai pentingnya menangani *missing value* dalam sebuah dataset agar data menjadi lengkap (0:02 - 1:03).
+* Membuat transformasi baru dengan nama "Handling missing value" (1:13 - 1:34).
+* Menggunakan *step* **Data Grid** untuk membuat data contoh (*dummy data*) yang berisi kolom **Nama** dan **Alamat** (1:40 - 2:35).
+* Memasukkan data contoh di mana salah satu baris (Jaka) memiliki nilai `null` pada kolom Alamat (2:07 - 2:35).
+
+**2. Implementasi Step 'If field value is null' (2:50 - 4:24)**
+* Menghubungkan *step* **Data Grid** ke *step* **If field value is null** (2:50 - 3:13).
+* Mengonfigurasi *step* untuk memilih kolom yang akan diperbaiki, dalam hal ini kolom **Alamat** (3:32 - 3:46).
+* Menentukan nilai pengganti untuk data `null`. Contoh yang diberikan adalah memberikan keterangan "undefined" jika alamat tidak ditemukan (3:46 - 4:24).
+
+**3. Eksekusi dan Output (4:24 - 5:17)**
+* Menjalankan transformasi dan melihat hasil melalui *preview data*. Nilai yang tadinya `null` berhasil berubah menjadi "undefined" (4:24 - 4:37).
+* Menunjukkan cara menyimpan hasil tersebut ke dalam file *Excel* sebagai bentuk *output* data yang sudah bersih (4:40 - 5:17).
+
+**4. Penanganan Data Numerik (5:25 - 6:58)**
+* Menambahkan kolom baru yaitu **Umur** (tipe *integer*) ke dalam data grid untuk skenario berbeda (5:25 - 5:58).
+* Menjelaskan pendekatan menangani `null` pada data numerik dengan cara mengisi nilai rata-rata (*average*). Dalam contoh, nilai `null` diisi dengan angka 20 (6:06 - 6:42).
+* Menjalankan kembali transformasi dan memastikan kolom umur yang kosong sudah terisi dengan nilai 20 (6:42 - 6:58).
+
+Video ditutup dengan kesimpulan bahwa teknik ini adalah cara sederhana untuk membersihkan data, dan pengguna disarankan untuk bereksplorasi lebih lanjut dengan skenario data yang berbeda (7:02 - 7:25).
+
+video #8
+Video ini membahas penggunaan fitur **Calculator** pada *Pentaho Data Integration* (PDI) untuk melakukan operasi data sederhana. Berikut adalah rangkuman langkah-langkah dan fungsi yang dipraktikkan dalam video:
+
+1. **Pengenalan Fungsi Calculator (0:13 - 1:25):**
+   Penjelasan mengenai peran *step* Calculator untuk operasi matematika (penjumlahan, pembagian), pembulatan (*round*), serta ekstraksi data waktu (*date/time extraction*).
+
+2. **Operasi Aritmatika Sederhana (1:30 - 4:10):**
+   - Pembuatan data simulasi berupa tabel mahasiswa dengan kolom *nama* (string), *tugas 1* (integer), dan *tugas 2* (integer).
+   - Penggunaan Calculator untuk menambahkan kolom baru bernama **jumlah** yang menghitung hasil penjumlahan antara *tugas 1* dan *tugas 2*.
+
+3. **Ekstraksi Data Waktu (4:10 - 8:15):**
+   - Penggunaan file data penjualan (*simple sales*) yang berisi tanggal, produk, dan jumlah.
+   - Praktik mengekstrak informasi spesifik dari data tanggal, yaitu:
+     - **Day of the Year**: Mengambil urutan hari dalam setahun (contoh: 1 Oktober adalah hari ke-275).
+     - **Month of the Date**: Mengambil informasi bulan dari tanggal yang tersedia.
+
+4. **Manipulasi String (8:15 - 9:45):**
+   - Demonstrasi penggunaan fungsi **Upper Case** pada kolom *produk*.
+   - Menjelaskan kegunaan fungsi ini untuk menstandarisasi format data (misalnya mengubah teks menjadi huruf kapital semua) agar data lebih konsisten saat diproses.
