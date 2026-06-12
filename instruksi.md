@@ -1,14 +1,22 @@
-Wajib mengumpulkan 4 file format .ktr (replace, merger, null, dan calculator) dan 4 file format .xlsx atau lainnya (replace, merger, null, dan calculator).
+Instructions
+
+Wajib mengumpulkan 3 file: 1 file format .ktr, 1 file format .sql (export dari database) dan 1 file format PNG/JPEG (screenshot tampilan phpMyAdmin)
 
 
 
-Berikut video praktik pembelajaran yang bisa mahasiswa gunakan sebagai langkah step by step nya (#5 sampai #8):
+Berikut beberapa video praktik pembelajaran yang bisa mahasiswa gunakan sebagai langkah step by step nya:
 
-https://youtube.com/playlist?list=PL5I6SZqMk8fGDY2jnj0Hzi8Cla89K5vQl\&si=APq3sCTYfojJMjhH
+https://www.youtube.com/watch?v=dRjHw0Tpiw0
+
+https://www.youtube.com/watch?v=0XF3nZUyw1M\&t=460s
+
+https://www.youtube.com/watch?v=KMWKKE6sS0g
+
+Dataset dapat didownload pada link berikut ini: https://www.kaggle.com/datasets/dhawyfarrasputra/sales-performance-report-dqlab-store
 
 Pastikan untuk semua file di kompres dengan format .rar atau .zip saat mengirimkan.
 
-Format nama file nya: NIM\_TugasETL2
+Format nama file nya: NIM\_TugasETL3
 
 
 

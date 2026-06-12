@@ -1,90 +1,97 @@
-video #5
-Video ini merupakan tutorial mengenai penggunaan fitur **Replace in String** pada *Pentaho Data Integration* (PDI). Berikut adalah rangkuman langkah-langkah yang dilakukan dalam video:
+1. https://www.youtube.com/watch?v=dRjHw0Tpiw0
+Berikut adalah tutorial langkah demi langkah yang rinci tentang proses ETL menggunakan Pentaho Data Integration, tanpa bagian pengantar:
 
-### 1. Pendahuluan dan Kasus (0:02 - 3:13)
-*   Penjelasan fungsi **Replace in String**: Mengganti nilai teks atau karakter tertentu dalam kolom data agar seragam (misalnya, menyamakan singkatan 'SI' menjadi 'Sistem Informasi').
-*   Tujuan: Menyeragamkan data mahasiswa yang memiliki variasi penulisan untuk mempermudah proses agregasi data di kemudian hari.
+1. Membuat Transformasi Baru
+Buka Pentaho Data Integration.
+Pilih opsi untuk membuat transformasi baru.
+2. Menambahkan Input File CSV
+Tambahkan langkah Input File CSV ke dalam transformasi.
+Klik dua kali pada langkah tersebut untuk membuka pengaturannya.
+Di bagian File, telusuri dan pilih file CSV yang berisi data transaksi ritel.
+3. Mengonfigurasi Input File CSV
+Setelah memilih file, lihat pratinjau data untuk memastikan kolom yang diperlukan (seperti ID pelanggan, transaksi, dan jumlah transaksi) ada.
+Pastikan untuk memeriksa pengaturan delimiter dan encoding sesuai dengan file Anda.
+4. Mengubah Tipe Data
+Tambahkan langkah Select Values untuk mengubah tipe data.
+Klik dua kali pada langkah tersebut.
+Di tab MetaData, pilih kolom yang ingin diubah (misalnya, "ID pelanggan").
+Ubah nama kolom menjadi "pelanggan" dan tipe data menjadi "String".
+Pastikan format kapitalisasi sudah benar sebelum menyimpan perubahan.
+5. Menambahkan Kalkulator
+Tambahkan langkah Calculator ke dalam transformasi.
+Klik dua kali pada langkah tersebut.
+Konfigurasikan kalkulator untuk menghitung tahun dari tanggal transaksi.
+Tambahkan perhitungan menggunakan 'Years of Date' untuk kolom tanggal transaksi.
+Simpan pengaturan kalkulator.
+6. Menambahkan Komponen Select Value
+Tambahkan langkah Select Values lainnya untuk memilih kolom yang relevan.
+Hapus kolom yang tidak diperlukan (misalnya, kolom yang tidak ingin Anda simpan).
+Pastikan hanya kolom yang diinginkan yang tersisa, seperti 'pelanggan', 'transmount', dan 'Year'.
+7. Menambahkan Baris Pendek
+Tambahkan langkah Row Shortening untuk memfilter data berdasarkan kriteria tertentu.
+Pilih bidang tertentu seperti pelanggan, bulan, dan tahun.
+Ganti nama kolom yang dihasilkan menjadi 'data pendek' untuk kejelasan.
+8. Kelompok Berdasarkan (Aggregation)
+Tambahkan langkah Group By untuk mengagregasi data.
+Klik dua kali pada langkah tersebut untuk mengonfigurasinya.
+Pilih bidang yang ingin dikelompokkan (misalnya, pelanggan, bulan, dan tahun).
+Tambahkan kolom baru yang disebut 'total', dan pilih kolom 'transmount' dengan tipe agregasi sebagai 'jumlah'.
+9. Mengonfigurasi Keluaran Tabel
+Tambahkan langkah Output Table untuk menyimpan data ke dalam database.
+Buat koneksi baru ke database MySQL.
+Masukkan informasi koneksi (seperti nama pengguna dan kata sandi).
+Uji koneksi untuk memastikan berhasil.
+Atur skema dan tabel target, misalnya mencari tabel 'fakta penjualan' di database MySQL lokal.
+Petakan kolom yang akan disimpan (seperti 'customer', 'mount', dan 'total transaksi').
+10. Penyimpanan dan Verifikasi Data
+Setelah semua langkah selesai, jalankan transformasi.
+Periksa hasil di SQL Yog atau alat database lain untuk memastikan data tersimpan dengan benar.
+Lakukan penyegaran database untuk melihat data yang baru saja disimpan.
+11. Ulang Proses jika Diperlukan
+Jika Anda perlu melakukan penyesuaian, ulangi langkah-langkah yang diperlukan untuk memperbaiki atau mengubah data.
+Dengan mengikuti langkah-langkah ini, Anda dapat melakukan proses ETL menggunakan Pentaho Data Integration secara efektif. Jika Anda memiliki pertanyaan lebih lanjut atau memerlukan detail tambahan, jangan ragu untuk bertanya!
 
-### 2. Implementasi di Pentaho (3:13 - 6:00)
-*   Membuat *transformation* baru dan memasukkan *step* **Replace in String** ke dalam *workspace*.
-*   Menghubungkan *input* data mahasiswa ke *step* tersebut.
-*   Mengonfigurasi *rule* pencarian: Mencari teks **'si'** dan menggantinya dengan **'sistem informasi'** pada kolom 'jurusan'.
-*   Menyiapkan *output* data ke dalam format file *Excel* (XLSX).
 
-### 3. Pengujian dan Perbaikan (6:00 - 10:24)
-*   **Percobaan pertama (6:00 - 7:27):** Menjalankan *transformation*. Hasilnya ditemukan masalah, yaitu teks yang mengandung 'si' di dalam kata lain (seperti pada kata 'sistem informasi' itu sendiri) ikut berubah, sehingga data menjadi tidak akurat.
-*   **Solusi:** Menambahkan pengaturan **Whole word = Yes** di dalam konfigurasi *Replace in String*. Hal ini memastikan hanya kata 'si' yang berdiri sendiri (utuh) yang akan diganti, bukan bagian dari kata lain (7:31 - 8:54).
-*   **Pengujian Akhir:** Menjalankan ulang proses dan memverifikasi hasilnya. Data mahasiswa dengan jurusan 'si' berhasil berubah menjadi 'sistem informasi' tanpa merusak data lain (9:17 - 10:13).
+2. https://www.youtube.com/watch?v=0XF3nZUyw1M&t=460s
+Video ini adalah tutorial tentang penggunaan Pentaho Data Integration untuk proses ETL (Extract, Transform, Load). Berikut adalah langkah-langkah dan rincian dari video tersebut:
 
-video #6
+Pengantar Pentaho Data Integration:
 
-Video ini membahas implementasi **Merge Join** dalam *Pentaho Data Integration* untuk menggabungkan dua dataset yang berbeda. Berikut adalah langkah-langkah lengkap yang dilakukan dalam video:
+Video dimulai dengan memperkenalkan Pentaho Data Integration sebagai alat untuk proses ETL.
+Pentaho adalah alat gratis yang kaya fitur dan mudah digunakan untuk integrasi data.
+Pengguna perlu mengunduh Pentaho dari tautan yang disediakan, dengan ukuran sekitar 1GB.
+Java Runtime Environment (JRE) perlu diinstal terlebih dahulu karena Pentaho berbasis Java.
+Memasang Java dan Memeriksa Pemasangan:
 
-**1. Persiapan Data (0:01 - 5:00)**
-*   **Studi Kasus:** Menggunakan dua file (CSV/Excel), yaitu data **Dosen** dan data **Program Studi (Prodi)**.
-*   **Relasi Data:** Menjelaskan konsep *Foreign Key*, di mana kolom 'jurusan' pada data dosen akan dihubungkan dengan 'kode prodi' pada data Master Prodi.
+Pengguna diinstruksikan untuk mengunduh konektor PostgreSQL secara manual.
+Setelah mengunduh JRE, pembicara menunjukkan cara memeriksa pemasangan Java melalui command prompt.
+Mempersiapkan Data dan Konektor:
 
-**2. Konfigurasi Awal di Pentaho (3:24 - 6:20)**
-*   Membuat *transformation* baru dan memasukkan file input untuk data Dosen dan data Prodi menggunakan *CSV file input*.
-*   Melakukan pengecekan data (*Get Fields* dan *Preview*) untuk memastikan struktur tabel sudah benar.
+Pembicara menyiapkan dataset yang akan digunakan, yaitu dataset lagu Spotify dari Kaggle.com.
+File arsip yang diunduh perlu diekstrak untuk mendapatkan data yang diperlukan.
+Konektor MySQL kemudian disalin ke dalam folder 'lib' di direktori Pentaho Data Integration.
+Menyiapkan Pentaho dan Basis Data:
 
-**3. Implementasi Merge Join (6:21 - 10:20)**
-*   Menggunakan *step* **Merge Join** untuk menghubungkan kedua file tersebut berdasarkan atribut yang sama (jurusan).
-*   Memilih tipe join yang diinginkan (Inner, Left, Right, atau Full).
-*   Menyimpan hasil *join* ke dalam format file Excel menggunakan *Microsoft Excel Writer*.
+Pengguna membuka Pentaho dengan menjalankan file eksekutabel Spoon sebagai administrator.
+Pembicara membuat basis data baru di MySQL melalui phpMyAdmin untuk menyimpan data.
+Antarmuka Pentaho Data Integration dan Ekstraksi Data:
 
-**4. Pentingnya Sorting (11:00 - 14:10)**
-*   Penjelasan bahwa *Merge Join* di Pentaho memerlukan data yang sudah diurutkan terlebih dahulu agar hasilnya akurat.
-*   Menambahkan *step* **Sort Rows** sebelum *Merge Join* pada kedua aliran data (Dosen dan Prodi) untuk mengurutkan berdasarkan kolom kunci (*jurusan/kode prodi*) secara *ascending*.
+Antarmuka Pentaho ditampilkan, dan pengguna memilih 'transformation' untuk memulai proses transformasi.
+Pengguna memilih input dari file CSV untuk ekstraksi data dan mengganti nama langkah ekstraksi.
+Transformasi Data di Pentaho:
 
-**5. Pembersihan Data dengan Select Values (14:45 - 16:50)**
-*   Menggunakan *step* **Select Values** untuk memfilter kolom yang akan ditampilkan.
-*   Menghapus kolom duplikat (seperti 'jurusan' dan 'kode prodi' yang ganda) serta kolom lain yang tidak diperlukan agar *output* lebih rapi.
+Setelah pratinjau data, pengguna melakukan transformasi dengan menghapus tabel yang tidak perlu dan merapikan data.
+Pengguna mengganti nama kolom dan menghubungkan aliran data dengan langkah-langkah yang sesuai.
+Transformasi dan Keluaran Data:
 
-**6. Pengujian Akhir (16:30 - 17:32)**
-*   Menjalankan transformasi (*Run*) dan memverifikasi hasil akhir di mana data dosen kini sudah dilengkapi dengan nama program studi yang sesuai.
+Pengguna menghapus kolom yang tidak diinginkan dan mengurutkan data berdasarkan tahun.
+Data yang ditransformasi disiapkan untuk diekspor ke dalam file Microsoft Excel, dan pengguna memverifikasi hasilnya.
+Mengekspor Data ke MySQL:
 
-video #7
-Video ini membahas cara menangani data yang bernilai `null` atau kosong menggunakan **Pentaho Data Integration (PDI)** dengan memanfaatkan *step* **If field value is null**. Berikut adalah langkah-langkah yang dilakukan dalam video:
+Pengguna menunjukkan cara mengunduh data dari Excel ke dalam database MySQL menggunakan opsi "Table output".
+Koneksi database baru dibuat dan tabel baru bernama "music" dibuat untuk menerima data.
+Setelah menjalankan transformasi, data dari file CSV berhasil diimpor ke tabel "music" di MySQL, diatur berdasarkan tahun.
+Video ini memberikan panduan lengkap dan praktis untuk melakukan proses ETL menggunakan Pentaho Data Integration, mulai dari instalasi hingga ekspor data ke database MySQL.
 
-**1. Persiapan Data (0:02 - 2:35)**
-* Penjelasan awal mengenai pentingnya menangani *missing value* dalam sebuah dataset agar data menjadi lengkap (0:02 - 1:03).
-* Membuat transformasi baru dengan nama "Handling missing value" (1:13 - 1:34).
-* Menggunakan *step* **Data Grid** untuk membuat data contoh (*dummy data*) yang berisi kolom **Nama** dan **Alamat** (1:40 - 2:35).
-* Memasukkan data contoh di mana salah satu baris (Jaka) memiliki nilai `null` pada kolom Alamat (2:07 - 2:35).
 
-**2. Implementasi Step 'If field value is null' (2:50 - 4:24)**
-* Menghubungkan *step* **Data Grid** ke *step* **If field value is null** (2:50 - 3:13).
-* Mengonfigurasi *step* untuk memilih kolom yang akan diperbaiki, dalam hal ini kolom **Alamat** (3:32 - 3:46).
-* Menentukan nilai pengganti untuk data `null`. Contoh yang diberikan adalah memberikan keterangan "undefined" jika alamat tidak ditemukan (3:46 - 4:24).
-
-**3. Eksekusi dan Output (4:24 - 5:17)**
-* Menjalankan transformasi dan melihat hasil melalui *preview data*. Nilai yang tadinya `null` berhasil berubah menjadi "undefined" (4:24 - 4:37).
-* Menunjukkan cara menyimpan hasil tersebut ke dalam file *Excel* sebagai bentuk *output* data yang sudah bersih (4:40 - 5:17).
-
-**4. Penanganan Data Numerik (5:25 - 6:58)**
-* Menambahkan kolom baru yaitu **Umur** (tipe *integer*) ke dalam data grid untuk skenario berbeda (5:25 - 5:58).
-* Menjelaskan pendekatan menangani `null` pada data numerik dengan cara mengisi nilai rata-rata (*average*). Dalam contoh, nilai `null` diisi dengan angka 20 (6:06 - 6:42).
-* Menjalankan kembali transformasi dan memastikan kolom umur yang kosong sudah terisi dengan nilai 20 (6:42 - 6:58).
-
-Video ditutup dengan kesimpulan bahwa teknik ini adalah cara sederhana untuk membersihkan data, dan pengguna disarankan untuk bereksplorasi lebih lanjut dengan skenario data yang berbeda (7:02 - 7:25).
-
-video #8
-Video ini membahas penggunaan fitur **Calculator** pada *Pentaho Data Integration* (PDI) untuk melakukan operasi data sederhana. Berikut adalah rangkuman langkah-langkah dan fungsi yang dipraktikkan dalam video:
-
-1. **Pengenalan Fungsi Calculator (0:13 - 1:25):**
-   Penjelasan mengenai peran *step* Calculator untuk operasi matematika (penjumlahan, pembagian), pembulatan (*round*), serta ekstraksi data waktu (*date/time extraction*).
-
-2. **Operasi Aritmatika Sederhana (1:30 - 4:10):**
-   - Pembuatan data simulasi berupa tabel mahasiswa dengan kolom *nama* (string), *tugas 1* (integer), dan *tugas 2* (integer).
-   - Penggunaan Calculator untuk menambahkan kolom baru bernama **jumlah** yang menghitung hasil penjumlahan antara *tugas 1* dan *tugas 2*.
-
-3. **Ekstraksi Data Waktu (4:10 - 8:15):**
-   - Penggunaan file data penjualan (*simple sales*) yang berisi tanggal, produk, dan jumlah.
-   - Praktik mengekstrak informasi spesifik dari data tanggal, yaitu:
-     - **Day of the Year**: Mengambil urutan hari dalam setahun (contoh: 1 Oktober adalah hari ke-275).
-     - **Month of the Date**: Mengambil informasi bulan dari tanggal yang tersedia.
-
-4. **Manipulasi String (8:15 - 9:45):**
-   - Demonstrasi penggunaan fungsi **Upper Case** pada kolom *produk*.
-   - Menjelaskan kegunaan fungsi ini untuk menstandarisasi format data (misalnya mengubah teks menjadi huruf kapital semua) agar data lebih konsisten saat diproses.
+3. https://www.youtube.com/watch?v=KMWKKE6sS0g
